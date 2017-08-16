@@ -1,45 +1,39 @@
 {
   "name": "ccli-api",
+  "description": "Open source API wrapper around publicly available CCLI services",
   "version": "0.0.1",
-  "description": "Open source API wrapper around CCLI Services",
-  "main": "dist/index.js",
-  "scripts": {
-    "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "prettier": "npm run prettier:fix",
-    "prettier:fix": "prettier --single-quote --trailing-comma es5 --write \"{src,__{tests,mocks}__}/**/*.{js,ts}\"",
-    "prettier:test": "prettier --single-quote --trailing-comma es5 --list-different \"{src,__{tests,mocks}__}/**/*.{js,ts}\"",
-    "start": "npm run lint && npm test && tsc -w",
-    "test": "jest"
-  },
+  "author": "Kai Yao",
   "keywords": [
     "ccli",
     "api",
     "songselect"
   ],
-  "author": "Kai Yao",
   "license": "MIT",
-  "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "testEnvironment": "node",
-    "transform": {
-      "^.+\\.(ts)$": "./node_modules/ts-jest/preprocessor.js"
-    },
-    "testMatch": [
-      "**/__tests__/*.(ts|js)",
-      "**/?(*.)test.(ts|js)"
-    ]
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "prettier": "npm run prettier:fix",
+    "prettier:fix": "prettier --single-quote --trailing-comma all --write \"{src,__{tests,mocks}__}/**/*.{js,ts}\"",
+    "prettier:test": "prettier --single-quote --trailing-comma all --list-different \"{src,__{tests,mocks}__}/**/*.{js,ts}\"",
+    "start": "npm run lint && npm test && tsc -w",
+    "test": "jest"
   },
   "dependencies": {
+    "body-parser": "^1.17.2",
     "cheerio": "^1.0.0-rc.2",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "lodash": "^4.17.4",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.16.4",
     "@types/cheerio": "^0.22.2",
     "@types/express": "^4.0.36",
     "@types/jest": "^20.0.2",
+    "@types/lodash": "^4.14.72",
+    "@types/request": "^2.0.0",
+    "@types/request-promise-native": "^1.0.6",
     "@types/supertest": "^2.0.1",
     "jest": "^20.0.4",
     "prettier": "^1.5.2",
@@ -47,5 +41,20 @@
     "ts-jest": "^20.0.7",
     "tslint": "^5.5.0",
     "typescript": "^2.4.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/*.?(ts|js)",
+      "**/src/**/*.test.?(ts|js)"
+    ],
+    "transform": {
+      "^.+\\.(ts)$": "./node_modules/ts-jest/preprocessor.js"
+    },
+    "verbose": false
   }
 }
