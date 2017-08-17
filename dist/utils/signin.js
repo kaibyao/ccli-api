@@ -17,12 +17,12 @@ const constants_1 = require("./constants");
  * @param {string} email User email address
  * @param {string} password User password
  * @param {boolean} rememberMe Whether CCLI remembers the user based on the returned token string (not sure this works)
- * @returns {Promise<IRequestCookie[]>}
+ * @returns {Promise<ISigninCookie[]>}
  */
 function signIn(email, password, rememberMe) {
     return __awaiter(this, void 0, void 0, function* () {
         const jar = request.jar();
-        const setupRequestVerificationToken = yield request({
+        const setupRequestVerificationToken = request({
             headers: {
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
                 'Accept-Encoding': 'gzip, deflate, br',
@@ -40,7 +40,7 @@ function signIn(email, password, rememberMe) {
             simple: false,
             uri: constants_1.URL_SIGN_IN,
         });
-        const response = yield request({
+        const response = request({
             formData: {
                 EmailAddress: email,
                 Password: password,
@@ -66,6 +66,7 @@ function signIn(email, password, rememberMe) {
             simple: false,
             uri: constants_1.URL_SIGN_IN,
         });
+        yield Promise.all([setupRequestVerificationToken, response]);
         return jar.getCookies('https://profile.ccli.com');
     });
 }

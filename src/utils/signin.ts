@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { Cookie } from 'request';
 import * as request from 'request-promise-native';
-import { IRequestCookie, URL_SIGN_IN, USER_AGENT } from './constants';
+import { ISigninCookie, URL_SIGN_IN, USER_AGENT } from './constants';
 
 /**
  * Attempts to sign into CCLI using user-supplied credentials.
@@ -10,12 +10,12 @@ import { IRequestCookie, URL_SIGN_IN, USER_AGENT } from './constants';
  * @param {string} email User email address
  * @param {string} password User password
  * @param {boolean} rememberMe Whether CCLI remembers the user based on the returned token string (not sure this works)
- * @returns {Promise<IRequestCookie[]>}
+ * @returns {Promise<ISigninCookie[]>}
  */
-export async function signIn(email: string, password: string, rememberMe: boolean): Promise<IRequestCookie[]> {
+export async function signIn(email: string, password: string, rememberMe: boolean): Promise<ISigninCookie[]> {
   const jar = request.jar();
 
-  const setupRequestVerificationToken = await request({
+  const setupRequestVerificationToken = request({
     headers: {
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
       'Accept-Encoding': 'gzip, deflate, br',
@@ -34,7 +34,7 @@ export async function signIn(email: string, password: string, rememberMe: boolea
     uri: URL_SIGN_IN,
   });
 
-  const response = await request({
+  const response = request({
     formData: {
       EmailAddress: email,
       Password: password,
@@ -61,5 +61,7 @@ export async function signIn(email: string, password: string, rememberMe: boolea
     uri: URL_SIGN_IN,
   });
 
-  return jar.getCookies('https://profile.ccli.com') as IRequestCookie[];
+  await Promise.all([setupRequestVerificationToken, response]);
+
+  return jar.getCookies('https://profile.ccli.com') as ISigninCookie[];
 }

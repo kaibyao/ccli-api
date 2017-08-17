@@ -17,10 +17,10 @@ export const USER_AGENT: string = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_
  * Extends the Cookie interface with the missing key and value props.
  *
  * @export
- * @interface IRequestCookie
+ * @interface ISigninCookie
  * @extends {Cookie}
  */
-export interface IRequestCookie extends Cookie {
+export interface ISigninCookie extends Cookie {
   key: string;
   value: string;
 }
@@ -28,11 +28,11 @@ export interface IRequestCookie extends Cookie {
 /**
  * Represents the cookies returned from a successful sign-in.
  *
- * @interface ISignInCookies
+ * @interface ISigninCookieResponse
  */
-export interface ISignInCookies {
+export interface ISigninCookieResponse {
   [cookieKey: string]: {
-    options: IRequestCookie;
+    options: ISigninCookie;
     value: string;
   };
 }
