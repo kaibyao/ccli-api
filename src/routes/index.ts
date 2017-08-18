@@ -1,5 +1,6 @@
 import { IRouter, Request, RequestHandler, Response, Router } from 'express';
 import { signIn } from './signin';
+import { songSearch } from './song-search';
 
 const router: IRouter<any> = Router();
 
@@ -23,5 +24,6 @@ const index: RequestHandler = (req: Request, res: Response) => {
 
 router.get('/', index);
 router.post('/signin', signIn);
+router.get('/songsearch', songSearch);
 
 export { router as routes };

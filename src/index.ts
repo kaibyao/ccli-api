@@ -1,13 +1,14 @@
 import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
-import { Cookie } from 'request';
-import { ISigninCookie, ISigninCookieResponse } from './utils/constants';
-import { signIn } from './utils/signin';
 
 import { routes } from './routes';
 
 const app: express.Application = express();
 app.use(bodyParser.json());
+app.use(bodyParser.text());
+app.use(bodyParser.urlencoded());
+app.use(cookieParser());
 
 app.use(routes);
 

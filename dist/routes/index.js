@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const signin_1 = require("./signin");
+const song_search_1 = require("./song-search");
 const router = express_1.Router();
 exports.routes = router;
 const index = (req, res) => {
@@ -22,4 +23,5 @@ const index = (req, res) => {
 };
 router.get('/', index);
 router.post('/signin', signin_1.signIn);
+router.get('/songsearch', song_search_1.songSearch);
 //# sourceMappingURL=index.js.map
