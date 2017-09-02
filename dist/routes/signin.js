@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const signin_1 = require("../utils/signin");
+const signin_1 = require("../api/signin");
 /**
  * Express request handler for Logging into CCLI and returning the authentication cookies.
  *

@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { Cookie, CookieJar } from 'request';
 import * as request from 'request-promise-native';
-import { ISigninCookie, URL_COOKIES_MISC, URL_COOKIES_PROFILE, URL_SIGN_IN, USER_AGENT } from './constants';
+import { ISigninCookie, URL_COOKIES_MISC, URL_COOKIES_PROFILE, URL_SIGN_IN, USER_AGENT } from '../utils/constants';
 
 /**
  * Attempts to sign into CCLI using user-supplied credentials.

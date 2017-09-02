@@ -6,6 +6,12 @@ const router: IRouter<any> = Router();
 
 const index: RequestHandler = (req: Request, res: Response) => {
   res.send({
+    '/lyrics': {
+      get: {
+        url: 'SongSelect View Lyrics URL',
+      },
+    },
+
     '/signin': {
       post: {
         email: 'Login email address',

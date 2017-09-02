@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const song_search_1 = require("../utils/song-search");
+const song_search_1 = require("../api/song-search");
 /**
  * Express request handler for searching a song from CCLI.
  *

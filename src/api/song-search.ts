@@ -1,15 +1,15 @@
 import * as cheerio from 'cheerio';
 import * as _ from 'lodash';
-import { Cookie, CookieJar } from 'request';
+import { CookieJar } from 'request';
 import * as request from 'request-promise-native';
 import {
   ISigninCookieObj,
   ISongSearchResult,
-  URL_COOKIES_MISC,
   URL_SONG_SEARCH,
   URL_SONGSELECT_ROOT,
   USER_AGENT,
-} from './constants';
+} from '../utils/constants';
+import { generateCookieJar } from '../utils/cookies';
 
 /**
  * Attempts to search for a song from CCLI using provided cookies.
@@ -20,14 +20,7 @@ import {
  * @returns {Promise<void>}
  */
 export async function songSearch(songSearchText: string, cookies: ISigninCookieObj): Promise<ISongSearchResult[]> {
-  const jar: CookieJar = request.jar();
-  const cookieKeys: string[] = Object.keys(cookies);
-  let i: number = 0;
-  for (i = 0; i < cookieKeys.length; i++) {
-    const cookieKey: string = cookieKeys[i];
-    const cookie: Cookie = request.cookie(`${cookieKey}=${cookies[cookieKey]}`);
-    jar.setCookie(cookie, URL_COOKIES_MISC);
-  }
+  const jar: CookieJar = generateCookieJar(cookies);
 
   const songResultsHtml: string = await request({
     gzip: true,

@@ -7,6 +7,11 @@ const router = express_1.Router();
 exports.routes = router;
 const index = (req, res) => {
     res.send({
+        '/lyrics': {
+            get: {
+                url: 'SongSelect View Lyrics URL',
+            },
+        },
         '/signin': {
             post: {
                 email: 'Login email address',

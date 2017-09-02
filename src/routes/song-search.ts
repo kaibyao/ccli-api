@@ -1,6 +1,6 @@
 import { Request, RequestHandler, Response } from 'express';
+import { songSearch as getSongSearchResults } from '../api/song-search';
 import { ISigninCookie, ISigninCookieResponse, ISongSearchResult } from '../utils/constants';
-import { songSearch as getSongSearchResults } from '../utils/song-search';
 
 /**
  * Express request handler for searching a song from CCLI.

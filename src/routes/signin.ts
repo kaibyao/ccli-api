@@ -1,6 +1,6 @@
 import { Request, RequestHandler, Response } from 'express';
+import { signIn as getSignInCookie } from '../api/signin';
 import { ISigninCookie, ISigninCookieResponse } from '../utils/constants';
-import { signIn as getSignInCookie } from '../utils/signin';
 
 /**
  * Express request handler for Logging into CCLI and returning the authentication cookies.
